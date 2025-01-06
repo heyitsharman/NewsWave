@@ -1,0 +1,132 @@
+.news {
+    font-size: 1.2rem;
+    color: #fff;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #000; /* Black background for contrast */
+}
+
+.news-header {
+    width: 100%;
+    height: 10%;
+    background-color: #111214;
+    border-radius: 1rem 1rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+}
+.logo{
+    font-family: "Bebas Neue",sans-serif;
+    font-size: 2.5rem;
+    color: #ddd;
+    background-color: #111214;
+
+}
+
+.search-bar input{
+    width: 20rem;
+    height: 2rem;
+    background-color: #060709;
+    border: none;
+    padding: 0 4rem 0 2rem;
+    border-radius: 5rem;
+    transition: width 0.3s;
+    outline: none;
+    color: #ccc;
+}
+.search-bar input:focus{
+    width: 30rem;
+    cursor: text;
+}
+.search-bar input:focus::placeholder{
+    color: transparent;
+}
+.search-bar{
+    position: relative;
+}
+.search-bar button {
+    background: transparent;
+    border: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff; /* Button color */
+    font-size: 2rem;
+}
+.news-content {
+    display: flex;
+    flex: 1;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.navbar {
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.user, .categories {
+    background-color: #111214;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
+.user {
+    height: 20%;
+}
+
+.categories {
+    flex: 1;
+}
+
+.news-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.headline, .news-grid {
+    background-color: #111214;
+    border-radius: 1rem;
+    flex: 1;
+    
+}
+
+.myblogs {
+    flex: 1;
+    background-color: #111214;
+    border-radius: 1rem;
+    display: flex;
+    min-width: 20rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-calender {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.news-footer {
+    width: 100%;
+    height: 5%;
+    background-color: #111214;
+    border-radius: 0 0 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
