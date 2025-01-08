@@ -1,0 +1,72 @@
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 35rem;
+    height: auto;
+    max-height: 90vh;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 5rem 4rem rgba(0, 0, 0, 0.5);
+    background-color: #111214;
+    overflow-y: auto;
+    
+}
+.close-button {
+    top: 1rem;
+    right: 2rem;
+    position: absolute;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.bookmark-item img{
+    height: 7rem;
+    width: 7rem;
+    object-fit: cover;
+    border-radius: 0 0.8rem;
+    margin-right: 1rem;
+}
+.bookmarks-heading{
+    font-family: "Bebas Neue",sans-serif;
+    font-weight: 300;
+    color: #ddd;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1rem;
+    font-size: 2.5rem;
+    background-color: #111214;
+}
+.bookmarks-list{
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+    background-color:#111214;
+}
+.bookmark-item{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 2rem;
+    background-color: #111214;
+}
+
+.bookmark-item h3{
+    font-family: "Comfortaa",sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: #111214;
+}
+.delete-button{
+    font-size: 2.4rem;
+    color: #b88efc;
+    cursor: pointer;
+    background-color: #111214;
+}
+
