@@ -173,7 +173,12 @@ const News = () => {
                 <NewsModal show={showModal} article={selectedArticle} onClose={()=>setShowModal(false)}/>
                 <BookMarks show={showBookmarks} bookmarks={bookmarks} onClose={()=>setShowBookmarks(false)} onSelectedArticle={handelArticleClick} onDeleteBookmark={handelBookmarkClick} />
             </div>
-            <footer className="news-footer">Footer</footer>
+            <footer className="news-footer">
+                <p>Stay updated with the latest news</p>
+                <a href="#subscribe">Subscribe Now</a>
+                <small>&copy; 2025 NewsWave. All rights reserved.</small>
+            </footer>
+
         </div>
     );
 };
