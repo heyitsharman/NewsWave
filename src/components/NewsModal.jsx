@@ -13,7 +13,7 @@ const NewsModal= ({show, article, onClose}) => {
             </span>
             { article && (
                 <>
-                    <img src={article.urlToImage} className="modal-image" alt={article.title}></img>
+                    <img src={article.image} className="modal-image" alt={article.title}></img>
             <h2 className="modal-title">
                 {article.title}
             </h2>

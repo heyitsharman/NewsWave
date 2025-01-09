@@ -17,7 +17,7 @@ const BookMarks = ({show, bookmarks, onClose, onSelectArticle, onDeleteBookmark}
                 {bookmarks.map((article,index)=>
                     (
                         <div className="bookmark-item" key={index} onClick={()=> onSelectArticle(article)}>
-                        <img src={article.urlToImg || noImg} alt={article.title} />
+                        <img src={article.image || noImg} alt={article.title} />
                         <h3>{article.title}</h3>
                         <span className="delete-button" onClick={(e)=>{
                             e.stopPropagation()

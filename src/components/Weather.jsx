@@ -29,9 +29,8 @@ const Weather = () => {
         return <i className="fa-solid fa-cloud-rain"></i>
       case 'Snow':
         return <i className="fa-solid fa-snowflake"></i>
-      case 'Haze':
-      case 'Mist':
-          return <i className="fa-solid fa-smoke"></i>
+      case 'Smoke':
+          return <i class="fa-duotone fa-solid fa-smoke"></i>
       default:
         return <i className="fa-solid fa-sun"></i>
     }

@@ -33,38 +33,37 @@ const News = () => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const apiKey = 'aa411c35ab3c49fd85d7343fe19b7474'; // Replace with your NewsAPI key
-                let url = `https://newsapi.org/v2/top-headlines?category=${selectedCategory}&country=us&apiKey=${apiKey}`;
-
+                const apiKey = '62e58585f8919515667384329a3c4f12'; // New API key
+                let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&apikey=${apiKey}`;
+    
                 // If a search query exists, use the search endpoint
                 if (isSearching && searchQuery) {
-                    url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(
-                        searchQuery
-                    )}&language=en&apiKey=${apiKey}`;
+                    url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(searchQuery)}&lang=en&apikey=${apiKey}`;
                 }
-
+    
                 const response = await axios.get(url);
                 const fetchedNews = response.data.articles;
-
+    
                 // Fallback for articles without images
                 fetchedNews.forEach((article) => {
-                    if (!article.urlToImage) {
-                        article.urlToImage = noImg;
+                    if (!article.image) {
+                        article.image = noImg; // Assuming 'image' instead of 'urlToImage'
                     }
                 });
-
+    
                 setHeadline(fetchedNews[0] || null);
                 setNews(fetchedNews.slice(1, 7)); // Get the next 6 articles
-
-                const SavedBookmark = JSON.parse(localStorage.getItem("bookmarks")) || []
-                setBookmarks(SavedBookmark)
+    
+                const SavedBookmark = JSON.parse(localStorage.getItem("bookmarks")) || [];
+                setBookmarks(SavedBookmark);
             } catch (error) {
                 console.error('Error fetching news:', error);
             }
         };
-
+    
         fetchNews();
     }, [selectedCategory, searchQuery, isSearching]);
+    
 
     const handleCategoryClick = (e, category) => {
         e.preventDefault();
@@ -136,7 +135,7 @@ const News = () => {
                         <div className="headline" onClick={()=>
                             handelArticleClick(headline)
                         }>
-                            <img src={headline.urlToImage} alt={headline.title} />
+                            <img src={headline.image} alt={headline.title} />
                             <h2 className="headline-title">
                                 <a href={headline.url} target="_blank" rel="noopener noreferrer">
                                     {headline.title}
@@ -152,7 +151,7 @@ const News = () => {
                         {news.map((article, index) => (
                             <div key={index} className="news-grid-items" 
                             onClick={()=> handelArticleClick(article)} >
-                                <img src={article.urlToImage} alt={article.title} />
+                                <img src={article.image} alt={article.title} />
                                 <h3>
                                     <a
                                         href={article.url}
