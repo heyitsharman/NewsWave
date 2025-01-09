@@ -36,11 +36,11 @@ News Wave is a feature-rich news platform designed to deliver a seamless and eng
 ### Home Page  
 ![Home Page](screenshots/Home.png)  
 
-### News Categories  
-![News Categories](screenshots/news-categories.png)  
+### News Display  
+![News Categories](screenshots/modaldesign.png)  
 
-### Bookmarked Articles  
-![Bookmarked Articles](screenshots/Bookmarked.png)  
+### Footer 
+![Bookmarked Articles](screenshots/footer.png)  
 
 ---
 
