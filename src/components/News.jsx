@@ -180,10 +180,13 @@ const News = () => {
                 
             </div>
             <footer className="news-footer">
-                <p>Stay updated with the latest news</p>
-                <a href="#subscribe">Subscribe Now</a>
+                    <p>Stay updated with the latest news</p>
+                <div className="contact-info">
+                    <p><i class="fa-brands fa-github"></i><a href="https://github.com/heyitsharman" target="_blank" rel="noopener noreferrer">heyitsharman</a></p>
+                </div>
                 <small>&copy; 2025 NewsWave. All rights reserved.</small>
             </footer>
+
 
         </div>
     );
