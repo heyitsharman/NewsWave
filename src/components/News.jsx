@@ -6,6 +6,7 @@ import axios from 'axios';
 import Weather from './Weather'
 import NewsModal from './NewsModal'
 import BookMarks from './BookMarks'
+import CalenderWIdget from './CalenderWIdget';
 const categories = [
     'general',
     'world',
@@ -172,6 +173,11 @@ const News = () => {
                 </div>
                 <NewsModal show={showModal} article={selectedArticle} onClose={()=>setShowModal(false)}/>
                 <BookMarks show={showBookmarks} bookmarks={bookmarks} onClose={()=>setShowBookmarks(false)} onSelectedArticle={handelArticleClick} onDeleteBookmark={handelBookmarkClick} />
+                <div className="weather-calender">
+                <Weather />
+                <CalenderWIdget/>
+                </div>
+                
             </div>
             <footer className="news-footer">
                 <p>Stay updated with the latest news</p>

@@ -1,7 +1,108 @@
-.calender{
+.calendar {
     width: 100%;
-    min-width: 15rem;
-    height: calc(55% - 2rem);
+    max-width: 28rem;
     background-color: #111214;
+    padding: 1rem;
     border-radius: 1rem;
-}
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .navigate-date {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    background-color: #111214;
+  }
+  
+  .navigate-date h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #eeeeee;
+    background-color: #111214;
+  }
+  .navigate-date h2 .month{
+    background-color: #111214;
+  }
+  .buttons{
+    background-color: #111214;
+  }
+  .buttons i {
+    font-size: 1.3rem;
+    margin: 0.1rem;
+    background-color: transparent;
+    cursor: pointer;
+    color: #eeeeee;
+    transition: color 0.3s ease;
+    /* background-color: #111214; */
+  }
+  span.day.highlight{
+     /* Highlight color */
+    border-radius: 50%; /* Make it circular */
+    font-weight: bold;
+    color:#66ff99 ;
+    
+  }
+  span.day.highlight:hover{
+    color: black;
+  }
+  
+  /* .buttons i:hover {
+    color: #66ff99;
+  } */
+  
+  .weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    background-color: #111214;
+    padding: 0.5rem 0;
+    border-radius: 0.5rem;
+  }
+  
+  .weekdays span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #ccc;
+    background-color: #111214;
+  }
+  
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    text-align: center;
+    background-color: #111214;
+  }
+  .days span{
+    background-color: #111214;
+  }
+  
+  .day {
+    /* padding: 0.5rem; */
+    border-radius: 50%;
+    cursor: pointer;
+    /* background-color: #393e46; */
+    color: #eeeeee;
+    transition: all 0.3s ease;
+    background-color: #111214;
+  }
+  
+  .day:hover {
+    background-color: #66ff99;
+    color: black;
+    transform: scale(1.1);
+  }
+  
+  .empty {
+    visibility: hidden;
+    background-color: #111214;
+  }
+  

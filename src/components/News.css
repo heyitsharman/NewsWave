@@ -81,7 +81,7 @@ body {
 }
 
 .navbar{
-    height: auto;
+    height: 100%;
     border-radius: 20px;
     
 }
@@ -93,6 +93,7 @@ body {
     background-color: #111214;
     padding: 2rem 4rem 2rem 2rem;
     border-radius: 20px;
+    height: 100%;
 }
 
 
@@ -176,7 +177,7 @@ body {
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
 }
 
@@ -206,10 +207,9 @@ body {
 }
 
 .news-grid-items h3 {
-    font-size: 1.4rem;
+    /* font-size: 1.4rem; */
     font-family: "Bebas Neue", sans-serif;
     color: #fff;
-  
     position: absolute;
     bottom: 0;
     left: 0;
@@ -217,6 +217,8 @@ body {
     background-color: rgba(0,0,0,.7);
 }
 .news-grid-items h3 a{
+    font-size: 1rem;
+    line-height: 0%;
     text-decoration: none;
     font-family: "Kanit", sans-serif;
     font-weight: 200;
@@ -226,6 +228,11 @@ body {
 }
 .news-grid-items h3 a:hover{
     color: #5865f2;
+}
+
+.weather-calender{
+    width: 25%;
+    height: 100%;
 }
 
 .news-footer {
