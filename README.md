@@ -29,6 +29,20 @@ News Wave is a feature-rich news platform designed to deliver a seamless and eng
     ahead with the built-in calendar widget.
 -  **Personalized Experience**:
    -Tailor your news feed by selecting categories and bookmarking articles that matter to you.
+   ---
+
+## Screenshots  
+
+### Home Page  
+![Home Page](screenshots/Home.png)  
+
+### News Display  
+![News Categories](screenshots/modaldesign.png)  
+
+### Footer 
+![Bookmarked Articles](screenshots/footer.png)  
+
+---
 
 ## Installation and Setup
 
