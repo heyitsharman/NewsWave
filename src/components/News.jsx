@@ -7,6 +7,7 @@ import Weather from './Weather'
 import NewsModal from './NewsModal'
 import BookMarks from './BookMarks'
 import CalenderWIdget from './CalenderWIdget';
+import { NEWS_API_CONFIG, buildNewsUrl } from '../config/apiConfig';
 const categories = [
     'general',
     'world',
@@ -29,35 +30,74 @@ const News = () => {
     const [selectedArticle, setSelectedArticle] = useState(null) 
     const [bookmarks,setBookmarks] = useState([])
     const [showBookmarks, setShowBookmarks]=useState(false)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
     useEffect(() => {
         const fetchNews = async () => {
+            setLoading(true);
+            setError(null);
             try {
-                const apiKey = '62e58585f8919515667384329a3c4f12'; // New API key
-                let url = `https://gnews.io/api/v4/top-headlines?category=${selectedCategory}&lang=en&apikey=${apiKey}`;
+                let url;
+                const params = {};
     
-                // If a search query exists, use the search endpoint
+                // If a search query exists, search for it
                 if (isSearching && searchQuery) {
-                    url = `https://gnews.io/api/v4/search?q=${encodeURIComponent(searchQuery)}&lang=en&apikey=${apiKey}`;
+                    params.q = searchQuery;
+                } else {
+                    // Use section/category
+                    const mappedCategory = NEWS_API_CONFIG.CATEGORY_MAP[selectedCategory];
+                    if (mappedCategory) {
+                        params.section = mappedCategory;
+                    }
                 }
     
+                // Always get recent articles
+                params['order-by'] = 'newest';
+                
+                url = buildNewsUrl(NEWS_API_CONFIG.ENDPOINTS.SEARCH, params);
+                console.log('Fetching from:', url); // Debug log
+    
                 const response = await axios.get(url);
-                const fetchedNews = response.data.articles;
+                console.log('API Response:', response.data); // Debug log
+                
+                const fetchedNews = response.data.response.results;
     
-                // Fallback for articles without images
-                fetchedNews.forEach((article) => {
-                    if (!article.image) {
-                        article.image = noImg; // Assuming 'image' instead of 'urlToImage'
-                    }
-                });
+                // Transform Guardian API data to our format
+                const validArticles = fetchedNews
+                    .filter(article => article.fields && article.fields.thumbnail)
+                    .map(article => ({
+                        title: article.webTitle,
+                        description: article.fields.headline || article.webTitle,
+                        content: article.fields.bodyText || 'Full content available at source link.',
+                        url: article.webUrl,
+                        image: article.fields.thumbnail || noImg,
+                        urlToImage: article.fields.thumbnail || noImg,
+                        publishedAt: article.webPublicationDate,
+                        source: {
+                            name: 'The Guardian'
+                        },
+                        author: article.fields.byline || 'The Guardian Staff'
+                    }))
+                    .slice(0, 7); // Limit to 7 articles
+
+                console.log('Processed articles:', validArticles); // Debug log
     
-                setHeadline(fetchedNews[0] || null);
-                setNews(fetchedNews.slice(1, 7)); // Get the next 6 articles
+                setHeadline(validArticles[0] || null);
+                setNews(validArticles.slice(1)); // Get the remaining articles
     
                 const SavedBookmark = JSON.parse(localStorage.getItem("bookmarks")) || [];
                 setBookmarks(SavedBookmark);
+                
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching news:', error);
+                setError('Failed to load news. Please try again later.');
+                setLoading(false);
+                
+                // Fallback data in case of API failure
+                setHeadline(null);
+                setNews([]);
             }
         };
     
@@ -131,7 +171,22 @@ const News = () => {
                     </nav>
                 </div>
                 <div className="news-section">
-                    {headline && (
+                    {loading && (
+                        <div style={{textAlign: 'center', padding: '2rem'}}>
+                            <p>Loading news articles...</p>
+                        </div>
+                    )}
+                    
+                    {error && (
+                        <div style={{textAlign: 'center', padding: '2rem', color: 'red'}}>
+                            <p>{error}</p>
+                            <button onClick={() => window.location.reload()} style={{marginTop: '1rem', padding: '0.5rem 1rem'}}>
+                                Retry
+                            </button>
+                        </div>
+                    )}
+                    
+                    {!loading && !error && headline && (
                         <div className="headline" onClick={()=>
                             handelArticleClick(headline)
                         }>
@@ -147,27 +202,30 @@ const News = () => {
                             </h2>
                         </div>
                     )}
-                    <div className="news-grid">
-                        {news.map((article, index) => (
-                            <div key={index} className="news-grid-items" 
-                            onClick={()=> handelArticleClick(article)} >
-                                <img src={article.image} alt={article.title} />
-                                <h3>
-                                    <a
-                                        href={article.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        {article.title}
-                                    </a>
-                                    <i className={`${bookmarks.some((bookmark)=>bookmark.title===article.title)?"fa-solid": "fa-regular"} fa-bookmark bookmark`} onClick={(e)=>{
-                                    e.stopPropagation()
-                                    handelBookmarkClick(article)
-                                }}></i>
-                                </h3>
-                            </div>
-                        ))}
-                    </div>
+                    
+                    {!loading && !error && (
+                        <div className="news-grid">
+                            {news.map((article, index) => (
+                                <div key={index} className="news-grid-items" 
+                                onClick={()=> handelArticleClick(article)} >
+                                    <img src={article.image} alt={article.title} />
+                                    <h3>
+                                        <a
+                                            href={article.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            {article.title}
+                                        </a>
+                                        <i className={`${bookmarks.some((bookmark)=>bookmark.title===article.title)?"fa-solid": "fa-regular"} fa-bookmark bookmark`} onClick={(e)=>{
+                                        e.stopPropagation()
+                                        handelBookmarkClick(article)
+                                    }}></i>
+                                    </h3>
+                                </div>
+                            ))}
+                        </div>
+                    )}
 
                 </div>
                 <NewsModal show={showModal} article={selectedArticle} onClose={()=>setShowModal(false)}/>

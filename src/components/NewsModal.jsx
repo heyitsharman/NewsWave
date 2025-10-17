@@ -13,11 +13,11 @@ const NewsModal= ({show, article, onClose}) => {
             </span>
             { article && (
                 <>
-                    <img src={article.image} className="modal-image" alt={article.title}></img>
+                    <img src={article.image || article.urlToImage} className="modal-image" alt={article.title}></img>
             <h2 className="modal-title">
                 {article.title}
             </h2>
-            <p className="modal-source">Source: {article.source.name}</p>
+            <p className="modal-source">Source: {article.source?.name || 'Unknown Source'}</p>
             <p className="modal-date">{new Date(article.publishedAt)
             .toLocaleString(
                 'en-US',
@@ -29,8 +29,11 @@ const NewsModal= ({show, article, onClose}) => {
                     minute:'2-digit'
                 }
             )}</p>
+            <p className="modal-description">
+                {article.description}
+            </p>
             <p className="modal-text">
-                {article.content} 
+                {article.content || 'Full content available at source link.'}
             </p>
             <a href={article.url} target="_blank" rel="noopener noreferrer"className="read-more-link" >Read More</a>
                 </>

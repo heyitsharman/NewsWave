@@ -93,6 +93,11 @@
     color: #eeeeee;
     transition: all 0.3s ease;
     background-color: #111214;
+    padding: 0.5rem;
+    min-height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .day:hover {
@@ -105,4 +110,130 @@
     visibility: hidden;
     background-color: #111214;
   }
+
+  /* Responsive styles for calendar */
+
+  /* Mobile styles */
+  @media (max-width: 480px) {
+    .calendar {
+      max-width: 100%;
+      padding: 0.8rem;
+      gap: 1rem;
+    }
+
+    .navigate-date {
+      padding: 0.3rem 0.5rem;
+    }
+
+    .navigate-date h2 {
+      font-size: 1.2rem;
+    }
+
+    .buttons i {
+      font-size: 1.1rem;
+      margin: 0;
+      padding: 0.3rem;
+    }
+
+    .weekdays {
+      gap: 0.2rem;
+      padding: 0.3rem 0;
+    }
+
+    .weekdays span {
+      font-size: 0.8rem;
+    }
+
+    .days {
+      gap: 0.2rem;
+    }
+
+    .day {
+      padding: 0.3rem;
+      min-height: 1.5rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  /* Small tablets */
+  @media (min-width: 481px) and (max-width: 600px) {
+    .calendar {
+      max-width: 100%;
+      padding: 0.9rem;
+      gap: 1.2rem;
+    }
+
+    .navigate-date h2 {
+      font-size: 1.3rem;
+    }
+
+    .buttons i {
+      font-size: 1.2rem;
+    }
+
+    .weekdays span {
+      font-size: 0.9rem;
+    }
+
+    .day {
+      padding: 0.4rem;
+      min-height: 1.8rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  /* Large tablets */
+  @media (min-width: 601px) and (max-width: 768px) {
+    .calendar {
+      max-width: 100%;
+      padding: 1rem;
+      gap: 1.3rem;
+    }
+
+    .navigate-date h2 {
+      font-size: 1.4rem;
+    }
+
+    .buttons i {
+      font-size: 1.25rem;
+    }
+
+    .weekdays span {
+      font-size: 0.95rem;
+    }
+
+    .day {
+      padding: 0.45rem;
+      min-height: 1.9rem;
+      font-size: 1rem;
+    }
+  }
+
+  /* Desktop and larger */
+  @media (min-width: 769px) {
+    .calendar {
+      max-width: 28rem;
+      padding: 1rem;
+      gap: 1.5rem;
+    }
+
+    .navigate-date h2 {
+      font-size: 1.5rem;
+    }
+
+    .buttons i {
+      font-size: 1.3rem;
+    }
+
+    .weekdays span {
+      font-size: 1rem;
+    }
+
+    .day {
+      padding: 0.5rem;
+      min-height: 2rem;
+      font-size: 1rem;
+    }
+  }
+  
   
